@@ -1,0 +1,910 @@
+{
+ "model": "gpt-6.1-sol",
+ "effort": "medium",
+ "date": "2026-10-22",
+ "summary": {
+  "questions": 22,
+  "passed": 20,
+  "by_category": {
+   "brief": "4/4",
+   "follow_up": "5/6",
+   "single_metric": "3/3",
+   "scope": "5/5",
+   "missing_data": "2/3",
+   "unknown_code": "1/1"
+  },
+  "tool_choice_ok": "21/22",
+  "ungrounded_numbers": 0,
+  "seconds": {
+   "mean": 10.2,
+   "median": 9.6,
+   "p90": 17.7,
+   "max": 21.4
+  },
+  "cost_usd": {
+   "per_question_mean": 0.0151,
+   "total": 0.3324
+  },
+  "llm_calls": 43,
+  "failures": [
+   {
+    "id": "sfo_btv",
+    "failed": [
+     "rules:btv_fare_ambiguous"
+    ]
+   },
+   {
+    "id": "hvn",
+    "failed": [
+     "tool_choice"
+    ]
+   }
+  ]
+ },
+ "rows": [
+  {
+   "id": "ne_rank",
+   "category": "brief",
+   "conv": "A",
+   "question": "Which airports in New England are strong candidates for terminal expansion?",
+   "tools": [
+    "rank_airports"
+   ],
+   "tool_args": [
+    {
+     "region": "new_england"
+    }
+   ],
+   "tool_ok": true,
+   "tool_errors": [],
+   "ungrounded": [],
+   "generic": {
+    "confidence_stated": "pass",
+    "sources_cited": "pass"
+   },
+   "rules": {
+    "ranking_not_unmet": "pass"
+   },
+   "llm_ok": true,
+   "answer": "**Boston Logan (BOS) is New England’s strongest terminal-expansion screening candidate**, followed by **Burlington (BTV)** and **Rhode Island T. F. Green (PVD)**. They lead the measured expansion-opportunity ranking—not a finding that terminal capacity is definitively constrained or that expansion will be profitable.\n\n### Leading candidates\n\nPillar scores are national percentiles; **points** show each pillar’s contribution to the overall score.\n\n| Airport | Overall score / national rank | Congestion: score → points | Size: score → points | Growth: score → points |\n|---|---|---|---|---|\n| **BOS — Boston Logan** | **72.2 / 7** | 84.6 → 33.9 | 89.3 → 26.8 | 38.6 → 11.6 |\n| **BTV — Burlington** | **61.1 / 30** | 80.4 → 32.1 | 15.0 → 4.5 | 81.4 → 24.4 |\n| **PVD — T. F. Green** | **59.5 / 36** | 46.4 → 18.6 | 49.3 → 14.8 | 87.1 → 26.1 |\n\n- **BOS: congestion and scale drive the case.** Departures were at least **15 minutes late 24.2%** of the time, and excess taxi-out averaged **8.7 minutes**. With **21,021,153 passengers boarded**, its case rests on existing traffic pressure rather than growth: boardings declined **0.3%**.\n- **BTV: congestion plus growth, but a smaller traffic base.** Late departures were **21.4%**, excess taxi-out was **10.8 minutes**, and boardings grew **5.9%** to **709,881**. These indicators support investigating the source of operational constraints before choosing terminal expansion as the remedy.\n- **PVD: a growth-led candidate.** Boardings rose **6.7%** to **2,117,401**; late departures were **20.3%**, with **6.5 minutes** of excess taxi-out. Growth contributes more to its score than congestion does.\n\n**Other ranked candidates**\n- **Portland (PWM): 51.9**, national rank **68**; boarding growth of **5.3%** supports further screening.\n- **Bradley (BDL): 46.6**, national rank **86**; **3,283,397** boardings, but growth of **−0.1%**.\n- **Manchester (MHT): 41.1**, national rank **109**; growth of **8.3%**, but a congestion pillar score of **26.1** limits its overall case.\n\n### Assumptions and uncertainty\n\n- **Confidence: medium.** Congestion is a proxy: there is no gate, slot, or seat-capacity data, so this ranking cannot establish that a terminal is the bottleneck.\n- Weights are judgment-based: **40% congestion, 30% size, 30% growth**. Under the tool’s weight-sensitivity test, national rank ranges are **6–11 for BOS**, **20–50 for BTV**, and **26–48 for PVD**.\n- Coverage is BTS reporting carriers’ **domestic flights only**; some regional flights and all cargo flights are missing. Excess taxi-out is measured against each airport’s own fast-taxi baseline and may include winter de-icing. Growth covers **CY2024 to CY2025**.\n- **New Haven (HVN) is not ranked:** congestion is unknown because no BTS reporting-carrier departures were available. Its **25.2%** boarding growth merits attention, but missing congestion must not be treated as zero.\n- Nonhubs excluded from the ranking are **BGR, ACK, ORH, PSM, MVY, HYA, PQI, BID, WST, BHB, LEB, RKD, PVC, RUT, AUG, and EWB**. Their exclusion reflects the ranking’s hub-only scope, not a finding that expansion is unwarranted.\n\n### Sources\n- **BTS On-Time Reporting:** September 2025–August 2026; fetched **2026-10-22**.\n- **FAA commercial-service enplanements:** CY2024–CY2025; fetched **2026-10-22**.",
+   "failed": [],
+   "passed": true,
+   "seconds": 17.7,
+   "input_tokens": 6035,
+   "output_tokens": 971,
+   "llm_calls": 2,
+   "cost_usd": 0.02178
+  },
+  {
+   "id": "la_sna",
+   "category": "brief",
+   "conv": "B",
+   "question": "Compare LA and Santa Ana airport congestion levels.",
+   "tools": [
+    "compare_congestion"
+   ],
+   "tool_args": [
+    {
+     "airports": [
+      "LA",
+      "Santa Ana"
+     ]
+    }
+   ],
+   "tool_ok": true,
+   "tool_errors": [],
+   "ungrounded": [],
+   "generic": {
+    "confidence_stated": "pass",
+    "sources_cited": "pass"
+   },
+   "rules": {
+    "similar_verdict": "pass",
+    "la_alias_stated": "pass"
+   },
+   "llm_ok": true,
+   "answer": "**Los Angeles International (LAX) and Santa Ana’s John Wayne Airport (SNA) have similar congestion**, according to the tool’s comparison of departure delays and taxi-out times.\n\n| Metric | LAX | SNA | Meaning |\n|---|---:|---:|---|\n| Departures at least 15 minutes late | 20.6% | 20.5% | How often operated flights depart late |\n| Excess taxi-out time | 7.3 min | 7.7 min | Taxi time above each airport’s own fast-taxi baseline |\n| Mean departure delay | 15.2 min | 15.4 min | Average delay, counting early departures as zero |\n| Congestion percentile | 61.8 | 63.6 | Position among ranked US airports; higher means more congestion |\n\n### Assumptions and uncertainty\n- **Confidence: medium.** The tool classifies these airports as similar because their congestion percentiles differ by less than 5 points.\n- “LA” was interpreted as **LAX only**, not the broader LA-area airports; Santa Ana means **SNA**.\n- Congestion is a **proxy based on delays and taxi time**, not direct evidence of gate, slot or seat shortages.\n- Coverage is limited to BTS-reporting carriers’ domestic flights; some regional flights and all cargo flights are missing. No additional warnings were reported.\n\n### Sources\n- **BTS On-Time Reporting:** September 2025–August 2026; fetched October 22, 2026.\n- **OurAirports community data:** snapshot fetched October 22, 2026; supplementary airport information.",
+   "failed": [],
+   "passed": true,
+   "seconds": 8.7,
+   "input_tokens": 3930,
+   "output_tokens": 366,
+   "llm_calls": 2,
+   "cost_usd": 0.01152
+  },
+  {
+   "id": "anc_long_haul",
+   "category": "brief",
+   "conv": "C",
+   "question": "What is the percentage of long haul flights out of Anchorage airport?",
+   "tools": [
+    "long_haul_share"
+   ],
+   "tool_args": [
+    {
+     "airport": "Anchorage"
+    }
+   ],
+   "tool_ok": true,
+   "tool_errors": [],
+   "ungrounded": [],
+   "generic": {
+    "confidence_stated": "pass",
+    "sources_cited": "pass"
+   },
+   "rules": {
+    "long_haul_caveats": "pass"
+   },
+   "llm_ok": true,
+   "answer": "**18.0% of Anchorage’s covered domestic departures were long haul**, defined as flights of **2,500 miles or more**, during September 2025–August 2026.\n\n- **Evidence:** 3,582 long-haul departures out of 19,936 operated departures in the dataset.\n\n### Assumptions and uncertainty\n- “Anchorage airport” is interpreted as **Ted Stevens Anchorage International (ANC)**.\n- **Confidence: high** for the covered flights—not for all airport departures.\n- Coverage includes BTS reporting carriers’ domestic flights only. **International departures, all cargo flights, and some regional flights are missing.**\n- There is no official US long-haul definition; the threshold above is the tool’s convention. A full-year window accounts for seasonality.\n\n### Sources\nBTS On-Time Reporting, September 2025–August 2026; fetched October 22, 2026.",
+   "failed": [],
+   "passed": true,
+   "seconds": 7.8,
+   "input_tokens": 3818,
+   "output_tokens": 212,
+   "llm_calls": 2,
+   "cost_usd": 0.00976
+  },
+  {
+   "id": "sfo_unmet",
+   "category": "brief",
+   "conv": "D",
+   "question": "What is the unmet flight demand in SFO airport and why?",
+   "tools": [
+    "unmet_demand"
+   ],
+   "tool_args": [
+    {
+     "airport": "SFO"
+    }
+   ],
+   "tool_ok": true,
+   "tool_errors": [],
+   "ungrounded": [],
+   "generic": {
+    "confidence_stated": "pass",
+    "sources_cited": "pass"
+   },
+   "rules": {
+    "unmet_indirect": "pass"
+   },
+   "llm_ok": true,
+   "answer": "SFO (San Francisco International) shows **strong signals of unmet flight demand**, but this is an **indirect estimate with low confidence**, not a measured count of unserved passengers or flights. All four indicators used by the method are active.\n\n### Why the signals point to unmet demand\n\n| Signal | Evidence | What it suggests |\n|---|---|---|\n| Congestion | **25.3%** of departures were at least **15 minutes late**; excess taxi-out time was **9.4 minutes** above SFO’s own fast-taxi baseline. Congestion percentile: **90.4**. | Operational pressure is high relative to ranked US airports, consistent with constrained capacity. |\n| Passenger growth | Boardings grew **4.7%**, reaching **26,251,850** in the latest calendar year. Growth percentile: **73.6**. | Traffic is growing while the airport already shows congestion. |\n| Fare premium | Fares were **10.9%** above what the model predicts from distance. Fare-premium percentile: **79.8**. | Elevated fares can indicate scarce capacity. The tool’s dominant-carrier screen did not flag this signal as ambiguous due to market power. |\n| FAA constraint status | SFO is designated for **schedule review**. | Official scheduling oversight supports the evidence of operational constraints. |\n\n### Assumptions and uncertainty\n- **“Strong” describes the signal level, not confidence:** the tool reports **low confidence**.\n- Public data lack bookings, seat availability and gate-capacity information, so they cannot establish how much demand goes unserved. Congestion and fare premiums are proxies, not proof that terminal expansion would resolve the constraint.\n- Flight coverage is limited to BTS-reporting carriers’ domestic operations; some regional flights and all cargo flights are missing. Fare analysis covers domestic airport-pair markets.\n- The fare model adjusts for distance and screens for dominant-carrier market power, but other factors can still influence fares.\n\n### Sources\nAll fetched **2026-10-22**:\n- **BTS On-Time Reporting:** 2025-09–2026-08.\n- **FAA commercial-service enplanements:** CY2024–CY2025.\n- **DOT Consumer Airfare Report, table 1a:** 2025-Q2–2026-Q1.\n- **FAA ATO Slot Administration:** current list at fetch date.",
+   "failed": [],
+   "passed": true,
+   "seconds": 12.5,
+   "input_tokens": 3916,
+   "output_tokens": 519,
+   "llm_calls": 2,
+   "cost_usd": 0.01302
+  },
+  {
+   "id": "ne_why_second",
+   "category": "follow_up",
+   "conv": "A",
+   "question": "Why is the second one ranked below Boston?",
+   "tools": [
+    "airport_scores"
+   ],
+   "tool_args": [
+    {
+     "airports": [
+      "BTV",
+      "BOS"
+     ]
+    }
+   ],
+   "tool_ok": true,
+   "tool_errors": [],
+   "ungrounded": [],
+   "generic": {
+    "confidence_stated": "pass",
+    "sources_cited": "pass"
+   },
+   "rules": {},
+   "llm_ok": true,
+   "answer": "**Burlington (BTV), the second-ranked New England airport, falls below Boston mainly because Boston’s much larger passenger base outweighs Burlington’s stronger growth.** Burlington scores **61.1**, versus Boston’s **72.2**.\n\n| Pillar | Burlington: score → points | Boston: score → points | Why it matters |\n|---|---:|---:|---|\n| Congestion | 80.4 → **32.1** | 84.6 → **33.9** | Both receive substantial contributions from operational-pressure indicators. |\n| Size | 15.0 → **4.5** | 89.3 → **26.8** | Boston boarded **21,021,153** passengers versus Burlington’s **709,881**—the main reason Boston ranks ahead. |\n| Growth | 81.4 → **24.4** | 38.6 → **11.6** | Burlington’s **5.9%** growth strengthens its case, while Boston’s boardings declined **0.3%**, but this does not overcome the size contribution. |\n\nThe congestion pillar combines different signals: Burlington’s excess taxi-out was **10.8 minutes**, versus Boston’s **8.7 minutes**, while **21.4%** of Burlington departures were at least **15 minutes late**, versus **24.2%** at Boston. Excess taxi-out measures time above each airport’s own fast-taxi baseline.\n\n### Assumptions and uncertainty\n- **Confidence: medium.** The weights—**40% congestion, 30% size, 30% growth**—are judgments, not proof of investment returns.\n- National ranks are **30 for Burlington** and **7 for Boston**. When the tool varies each weight by **±20%**, their rank ranges are **20–50** and **6–11**, respectively.\n- Congestion is only a proxy for capacity pressure; there is no gate, slot, or seat data establishing a terminal bottleneck.\n- Coverage includes BTS reporting carriers’ domestic flights only; some regional flights and all cargo flights are missing. Winter de-icing may affect taxi-out time, and growth reflects only **CY2024–CY2025**. No additional tool warnings were returned.\n\n### Sources\n- **BTS On-Time Reporting:** September 2025–August 2026; fetched **2026-10-22**.\n- **FAA commercial-service enplanements:** CY2024–CY2025; fetched **2026-10-22**.",
+   "failed": [],
+   "passed": true,
+   "seconds": 11.4,
+   "input_tokens": 11455,
+   "output_tokens": 553,
+   "llm_calls": 2,
+   "cost_usd": 0.02844
+  },
+  {
+   "id": "ne_hartford",
+   "category": "follow_up",
+   "conv": "A",
+   "question": "What about Hartford?",
+   "tools": [
+    "airport_scores",
+    "airport_scores"
+   ],
+   "tool_args": [
+    {
+     "airports": [
+      "Hartford"
+     ]
+    },
+    {
+     "airports": [
+      "BDL"
+     ]
+    }
+   ],
+   "tool_ok": true,
+   "tool_errors": [
+    "HARTFORD is not a US commercial-service airport in our data. The agent covers US airports only."
+   ],
+   "ungrounded": [],
+   "generic": {
+    "confidence_stated": "pass",
+    "sources_cited": "pass"
+   },
+   "rules": {
+    "hartford_is_bdl": "pass"
+   },
+   "llm_ok": true,
+   "answer": "**Interpreting Hartford as Bradley International (BDL) in Windsor Locks, it is a lower-priority expansion candidate in this ranking:** **5th in New England** and **86th nationally**, with a score of **46.6**. Its passenger base supports the case, but the congestion indicators and flat boarding trend provide less support for expansion.\n\n| Pillar | Score → contribution | Underlying evidence |\n|---|---:|---|\n| **Congestion** | 38.9 → **15.6 points** | **19.4%** of departures were at least **15 minutes late**; excess taxi-out was **6.4 minutes** above its own fast-taxi baseline. |\n| **Size** | 61.4 → **18.4 points** | **3,283,397 passengers boarded**—its largest scoring contribution. |\n| **Growth** | 42.1 → **12.6 points** | Boardings declined **0.1%** from the prior year, offering little evidence of growing pressure. |\n\n### Assumptions and uncertainty\n- **Confidence: medium.** The score weights are judgment-based: **40% congestion, 30% size, 30% growth**. Bradley’s national rank ranges from **78–95** under the tool’s weight-sensitivity test.\n- Congestion is a **proxy**, not proof of a terminal bottleneck: gate, slot, and seat-capacity data are unavailable.\n- Coverage is reporting carriers’ domestic flights only; some regional flights and all cargo flights are missing. Winter de-icing can affect excess taxi-out, and growth reflects **CY2024–CY2025** only. No additional warnings were returned.\n\n### Sources\n- **BTS On-Time Reporting:** September 2025–August 2026; fetched **2026-10-22**.\n- **FAA commercial-service enplanements:** CY2024–CY2025; fetched **2026-10-22**.",
+   "failed": [],
+   "passed": true,
+   "seconds": 11.9,
+   "input_tokens": 20686,
+   "output_tokens": 459,
+   "llm_calls": 3,
+   "cost_usd": 0.04596
+  },
+  {
+   "id": "ne_firm",
+   "category": "follow_up",
+   "conv": "A",
+   "question": "How firm is Boston's position? Would it stay near the top if the weights changed?",
+   "tools": [
+    "airport_scores"
+   ],
+   "tool_args": [
+    {
+     "airports": [
+      "BOS"
+     ]
+    }
+   ],
+   "tool_ok": true,
+   "tool_errors": [],
+   "ungrounded": [],
+   "generic": {
+    "confidence_stated": "pass",
+    "sources_cited": "pass"
+   },
+   "rules": {
+    "rank_range_stated": "pass"
+   },
+   "llm_ok": true,
+   "answer": "**Yes—Boston stays near the top nationally under the tested weight changes.** Its baseline rank is **7th among 140 ranked airports**, and its rank ranges from **6th to 11th** when each pillar’s weight is varied by **±20%**. That supports its position as a leading candidate, though not its exact rank.\n\n| Pillar | Percentile score | Points contributed | What supports it |\n|---|---:|---:|---|\n| **Congestion** | 84.6 | 33.9 | **24.2%** of departures at least **15 minutes late**; **8.7 minutes** of excess taxi-out. |\n| **Size** | 89.3 | 26.8 | **21,021,153** passengers boarded. |\n| **Growth** | 38.6 | 11.6 | Boardings declined **0.3%**—the weaker part of Boston’s case. |\n\nBoston’s **72.2** overall score therefore rests primarily on existing traffic scale and operational pressure, rather than rapid growth.\n\n### Assumptions and uncertainty\n- **Confidence: medium.** The baseline weights—**40% congestion, 30% size, 30% growth**—are judgments. The rank range supports robustness within the tested changes, not under every possible weighting.\n- This is an expansion-indicator ranking, **not proof of unmet demand or a terminal bottleneck**. Congestion is a proxy; gate, slot, and seat-capacity data are unavailable.\n- Coverage includes BTS reporting carriers’ domestic flights only; some regional flights and all cargo flights are missing. Winter de-icing may affect excess taxi-out, and growth covers **CY2024–CY2025** only. No additional warnings were returned.\n\n### Sources\n- **BTS On-Time Reporting:** September 2025–August 2026; fetched **2026-10-22**.\n- **FAA commercial-service enplanements:** CY2024–CY2025; fetched **2026-10-22**.",
+   "failed": [],
+   "passed": true,
+   "seconds": 11.1,
+   "input_tokens": 16115,
+   "output_tokens": 481,
+   "llm_calls": 2,
+   "cost_usd": 0.03704
+  },
+  {
+   "id": "la_area",
+   "category": "follow_up",
+   "conv": "B",
+   "question": "And what if you take the whole LA area against Santa Ana?",
+   "tools": [
+    "compare_congestion"
+   ],
+   "tool_args": [
+    {
+     "airports": [
+      "LA area",
+      "Santa Ana"
+     ]
+    }
+   ],
+   "tool_ok": true,
+   "tool_errors": [],
+   "ungrounded": [],
+   "generic": {
+    "confidence_stated": "pass",
+    "sources_cited": "pass"
+   },
+   "rules": {
+    "la_area_args": "pass"
+   },
+   "llm_ok": true,
+   "answer": "For the broader **LA area—LAX, Burbank, Long Beach and Ontario—the tool reports airport-level congestion, not a combined regional score**. LAX remains similar to Santa Ana; the broader comparison is shown below.\n\n| Airport | Departures ≥15 min late | Excess taxi-out time | Mean departure delay | Congestion percentile |\n|---|---:|---:|---:|---:|\n| LAX — Los Angeles International | 20.6% | 7.3 min | 15.2 min | 61.8 |\n| BUR — Hollywood Burbank | 19.7% | 7.8 min | 13.7 min | 58.6 |\n| LGB — Long Beach | 17.9% | 4.5 min | 10.2 min | 12.9 |\n| ONT — Ontario | 19.2% | 6.0 min | 13.8 min | 29.6 |\n| **SNA — Santa Ana/John Wayne** | **20.5%** | **7.7 min** | **15.4 min** | **63.6** |\n\n- **Late-departure share** measures how frequently operated flights depart late.\n- **Excess taxi-out** measures time above each airport’s own fast-taxi baseline.\n- **Congestion percentile** places each airport among ranked US airports; higher indicates more congestion. It is not a percentage of flights delayed.\n\n### Assumptions and uncertainty\n- **Confidence: medium.** No additional warnings were reported.\n- “LA area” is defined here as **LAX, BUR, LGB and ONT**, with SNA shown separately. There is no combined LA-area value in the result, so I cannot give a region-wide verdict.\n- Congestion is a delay-and-taxi-time proxy, not a direct measure of gate, slot or seat shortages.\n- Coverage includes BTS-reporting carriers’ domestic flights only; some regional flights and all cargo flights are missing.\n\n### Sources\n- **BTS On-Time Reporting:** September 2025–August 2026; fetched October 22, 2026.\n- **OurAirports community data:** snapshot fetched October 22, 2026; supplementary airport information.",
+   "failed": [],
+   "passed": true,
+   "seconds": 11.6,
+   "input_tokens": 6141,
+   "output_tokens": 588,
+   "llm_calls": 2,
+   "cost_usd": 0.01816
+  },
+  {
+   "id": "sfo_btv",
+   "category": "follow_up",
+   "conv": "D",
+   "question": "How does Burlington look on the same measure?",
+   "tools": [
+    "unmet_demand"
+   ],
+   "tool_args": [
+    {
+     "airport": "Burlington"
+    }
+   ],
+   "tool_ok": true,
+   "tool_errors": [
+    "BURLINGTON is not a US commercial-service airport in our data. The agent covers US airports only."
+   ],
+   "ungrounded": [],
+   "generic": {
+    "confidence_stated": "n/a",
+    "sources_cited": "n/a"
+   },
+   "rules": {
+    "btv_fare_ambiguous": "fail: fare signal not described as ambiguous"
+   },
+   "llm_ok": true,
+   "answer": "Do you mean **BTV (Burlington, Vermont)** or **BRL (Burlington, Iowa)**? The data tool lists both, so I need the airport to assess unmet-demand signals on the same basis as SFO.",
+   "failed": [
+    "rules:btv_fare_ambiguous"
+   ],
+   "passed": false,
+   "seconds": 4.4,
+   "input_tokens": 5611,
+   "output_tokens": 88,
+   "llm_calls": 2,
+   "cost_usd": 0.0121
+  },
+  {
+   "id": "top_growth",
+   "category": "single_metric",
+   "conv": "N",
+   "question": "Which five airports are growing the fastest?",
+   "tools": [
+    "top_airports_by"
+   ],
+   "tool_args": [
+    {
+     "metric": "growth",
+     "top_n": 5
+    }
+   ],
+   "tool_ok": true,
+   "tool_errors": [],
+   "ungrounded": [],
+   "generic": {
+    "confidence_stated": "pass",
+    "sources_cited": "pass"
+   },
+   "rules": {
+    "unranked_faster_flagged": "pass"
+   },
+   "llm_ok": true,
+   "answer": "**Wilmington International leads the five fastest-growing airports in the ranked US airport set**, measured by growth in passengers boarding from CY2024 to CY2025. This is not an unrestricted national top five: excluded Tweed/New Haven grew faster.\n\n| Airport | State | Passenger growth |\n|---|---|---:|\n| Wilmington International (ILM) | NC | 23.8% |\n| South Bend International (SBN) | IN | 21.3% |\n| Punta Gorda (PGD) | FL | 19.2% |\n| Provo Municipal (PVU) | UT | 16.7% |\n| Appleton International (ATW) | WI | 16.4% |\n\nThese percentages measure year-over-year growth in **enplanements—passengers boarding**, not flight counts.\n\n### Assumptions and uncertainty\n- **Confidence: medium.** Only the **140 ranked airports** are ordered: FAA large, medium and small hubs with sufficient BTS reporting-carrier departures.\n- **Important exclusion:** Tweed/New Haven (HVN) grew **25.2%**, but is not ranked because it has no departures in the BTS reporting-carrier data, leaving congestion unknown.\n- Mesa Gateway (IWA) and Glacier Park International (GPI) are also excluded for absent reporting-carrier departures; Guam International (GUM) has too few for stable congestion figures. Missing congestion is not zero congestion.\n- BTS coverage is reporting carriers’ domestic flights; some regional and all cargo flights are missing. Fast growth alone does **not** establish the best expansion candidate.\n\n### Sources\n- **FAA commercial-service enplanements:** CY2024–CY2025; fetched **2026-10-22**.\n- **BTS On-Time Reporting:** September 2025–August 2026; fetched **2026-10-22**.",
+   "failed": [],
+   "passed": true,
+   "seconds": 9.6,
+   "input_tokens": 4300,
+   "output_tokens": 416,
+   "llm_calls": 2,
+   "cost_usd": 0.01276
+  },
+  {
+   "id": "top_growth_rank",
+   "category": "follow_up",
+   "conv": "N",
+   "question": "Is the fastest-growing one also high in the expansion ranking?",
+   "tools": [
+    "airport_scores"
+   ],
+   "tool_args": [
+    {
+     "airports": [
+      "ILM"
+     ]
+    }
+   ],
+   "tool_ok": true,
+   "tool_errors": [],
+   "ungrounded": [],
+   "generic": {
+    "confidence_stated": "pass",
+    "sources_cited": "pass"
+   },
+   "rules": {},
+   "llm_ok": true,
+   "answer": "**Yes—Wilmington International (ILM) ranks fairly high: 31st out of 140 airports**, with an expansion opportunity score of **60.8/100**. Its leading growth boosts the score, but its smaller passenger base limits its overall rank.\n\n| Pillar | Score | Points contributed | What drives it |\n|---|---:|---:|---|\n| Growth | 100.0 | 30.0 | **23.8%** passenger growth from CY2024 to CY2025—the highest among ranked airports |\n| Congestion | 58.2 | 23.3 | **20.2%** of departures were late; **7.5 minutes** of excess taxi-out time |\n| Size | 25.0 | 7.5 | **912,516** passengers boarded in CY2025 |\n\nPillar scores are percentiles among ranked airports: growth is at the top, congestion is above the middle, and size is relatively low.\n\n### Assumptions and uncertainty\n- **Confidence: medium.** The score weights congestion at **40%**, size at **30%**, and growth at **30%**. These are judgment calls; changing each weight by **±20%** gives ILM a rank range of **17–46**.\n- Congestion is a **proxy for capacity pressure**, not a direct measure of unmet demand; gate, slot and seat data are unavailable. Excess taxi-out may include winter de-icing.\n- BTS coverage excludes some regional and all cargo flights.\n- “Fastest-growing” here means among ranked airports; as noted earlier, faster-growing Tweed/New Haven was excluded because congestion data were unavailable.\n\n### Sources\n- **FAA commercial-service enplanements:** CY2024–CY2025; fetched **2026-10-22**.\n- **BTS On-Time Reporting:** September 2025–August 2026; fetched **2026-10-22**.",
+   "failed": [],
+   "passed": true,
+   "seconds": 17.5,
+   "input_tokens": 6686,
+   "output_tokens": 431,
+   "llm_calls": 2,
+   "cost_usd": 0.01768
+  },
+  {
+   "id": "top_long_haul",
+   "category": "single_metric",
+   "conv": "O",
+   "question": "Which airports have the highest share of long haul flights?",
+   "tools": [
+    "top_airports_by"
+   ],
+   "tool_args": [
+    {
+     "metric": "long_haul_share"
+    }
+   ],
+   "tool_ok": true,
+   "tool_errors": [],
+   "ungrounded": [],
+   "generic": {
+    "confidence_stated": "pass",
+    "sources_cited": "pass"
+   },
+   "rules": {
+    "long_haul_caveats": "pass"
+   },
+   "llm_ok": true,
+   "answer": "**Honolulu (HNL) has the highest long-haul share, at 38.2%, followed by Kona (KOA) at 31.9% and Lihue (LIH) at 29.1%.** This ranking covers **domestic departures only**, not international flights.\n\nHere, “long haul” means a flight of **2,500 miles or more**; the share is the percentage of operated departures meeting that threshold.\n\n| Rank | Airport | Long-haul share |\n|---|---|---:|\n| 1 | Honolulu — Daniel K. Inouye (HNL) | 38.2% |\n| 2 | Kona — Ellison Onizuka (KOA) | 31.9% |\n| 3 | Lihue (LIH) | 29.1% |\n| 4 | Kahului (OGG) | 25.4% |\n| 5 | Anchorage (ANC) | 18.0% |\n| 6 | San Francisco (SFO) | 14.0% |\n| 7 | Boston Logan (BOS) | 8.6% |\n| 8 | New York Kennedy (JFK) | 7.6% |\n| 9 | Seattle–Tacoma (SEA) | 7.4% |\n| 10 | Los Angeles (LAX) | 7.1% |\n\n### Assumptions and uncertainty\n- **Confidence: high** for the covered data. BTS reporting-carrier domestic flights are included; international departures, some regional flights, and all cargo flights are missing. This is therefore **not an all-flights ranking**.\n- Only the **140 ranked airports** are ordered: FAA large, medium, and small hubs meeting the reporting-data threshold.\n- **Excluded:** Mesa Gateway (IWA), Tweed–New Haven (HVN), and Glacier Park (GPI) lack reporting-carrier departures; Guam (GUM) has too few for stable congestion figures and is outside the ranked set.\n- The long-haul cutoff is an analytical definition, not an official US standard. This single-metric ranking does not identify the best expansion candidates.\n\n### Sources\n- **BTS On-Time Reporting:** September 2025–August 2026; fetched October 22, 2026.\n- **FAA commercial-service enplanements:** CY2024–CY2025, used for the eligible airport universe; fetched October 22, 2026.",
+   "failed": [],
+   "passed": true,
+   "seconds": 19.0,
+   "input_tokens": 4567,
+   "output_tokens": 542,
+   "llm_calls": 2,
+   "cost_usd": 0.01455
+  },
+  {
+   "id": "ne_late",
+   "category": "single_metric",
+   "conv": "P",
+   "question": "Which New England airport has the most late departures?",
+   "tools": [
+    "top_airports_by"
+   ],
+   "tool_args": [
+    {
+     "metric": "late_departures",
+     "region": "new_england",
+     "top_n": 1
+    }
+   ],
+   "tool_ok": true,
+   "tool_errors": [],
+   "ungrounded": [],
+   "generic": {
+    "confidence_stated": "pass",
+    "sources_cited": "pass"
+   },
+   "rules": {
+    "top_region_args": "pass"
+   },
+   "llm_ok": true,
+   "answer": "**Boston Logan (BOS) has the highest share of late departures among ranked New England airports: 24.2%.** This is a rate, not the total number of late flights.\n\n- **Metric:** Operated departures leaving **15+ minutes after schedule**.\n- **Comparison:** Logan leads the **6 ranked airports** in New England. This alone does not make it the best expansion candidate.\n\n### Assumptions and uncertainty\n**Confidence: high**, within the covered data: BTS reporting carriers’ domestic flights; some regional flights and all cargo flights are excluded. Only eligible FAA hub airports are ordered.\n\n**Tweed–New Haven (HVN)** is not ranked because reporting-carrier departure data are unavailable, so its late-departure rate is unknown—not zero. The **16 nonhub airports** in scope are also excluded from the ranking.\n\n### Sources\n- **BTS On-Time Reporting:** September 2025–August 2026; fetched October 22, 2026.\n- **FAA commercial-service enplanements:** CY2024–CY2025; fetched October 22, 2026.",
+   "failed": [],
+   "passed": true,
+   "seconds": 8.0,
+   "input_tokens": 4924,
+   "output_tokens": 267,
+   "llm_calls": 2,
+   "cost_usd": 0.01252
+  },
+  {
+   "id": "roi_dollars",
+   "category": "scope",
+   "conv": "E",
+   "question": "What would the ROI in dollars be if we expanded SFO's terminal?",
+   "tools": [],
+   "tool_args": [],
+   "tool_ok": true,
+   "tool_errors": [],
+   "ungrounded": [],
+   "generic": {
+    "confidence_stated": "n/a",
+    "sources_cited": "n/a"
+   },
+   "rules": {
+    "roi_out_of_scope": "pass"
+   },
+   "llm_ok": true,
+   "answer": "I can’t estimate the dollar return on expanding SFO’s terminal. Construction costs, financing, forecasts, and dollar ROI are outside the scope of the available historical aviation data.\n\nThe closest analysis I can provide is:\n- **Expansion opportunity:** SFO’s score based on measured congestion, passenger volume, and observed growth.\n- **Demand pressure:** An indirect assessment of whether demand may exceed capacity—not a passenger estimate or financial return.\n\n### Assumptions and uncertainty\nCongestion can indicate capacity pressure, but it does not establish that terminal expansion would relieve it or generate a positive return. A financial assessment would require project-specific costs and incremental revenue and operating-cost projections.\n\n### Sources\nNo datasets were queried; no financial estimate is provided.",
+   "failed": [],
+   "passed": true,
+   "seconds": 4.0,
+   "input_tokens": 1667,
+   "output_tokens": 151,
+   "llm_calls": 1,
+   "cost_usd": 0.00484
+  },
+  {
+   "id": "heathrow",
+   "category": "scope",
+   "conv": "F",
+   "question": "How congested is London Heathrow compared with JFK?",
+   "tools": [
+    "airport_scores"
+   ],
+   "tool_args": [
+    {
+     "airports": [
+      "JFK"
+     ]
+    }
+   ],
+   "tool_ok": true,
+   "tool_errors": [],
+   "ungrounded": [],
+   "generic": {
+    "confidence_stated": "pass",
+    "sources_cited": "pass"
+   },
+   "rules": {
+    "lhr_out_of_scope": "pass"
+   },
+   "llm_ok": true,
+   "answer": "I can describe JFK’s congestion, but I can’t reliably compare it with London Heathrow: my data cover US airports, not Heathrow.\n\n**JFK’s measured congestion**\n- **22.7% of operated departures were at least 15 minutes late.**\n- **Excess taxi-out time was 13.0 minutes**—the monthly average above the airport’s own relatively fast taxi-out baseline.\n- **Congestion pillar score: 87.1**, indicating relatively high congestion among ranked US hub airports—not a comparison with Heathrow.\n\n### Assumptions and uncertainty\n**Confidence: medium.** Coverage is limited to reporting carriers’ domestic flights; some regional flights and all cargo flights are missing. Delays and taxi time are congestion proxies, not direct measurements of gate, slot or seat constraints. Excess taxi-out can include winter de-icing.\n\nI can compare JFK with another US airport using the same measures, but cannot establish whether Heathrow is more or less congested.\n\n### Sources\n- **BTS On-Time Reporting:** September 2025–August 2026; fetched October 22, 2026.\n- **FAA commercial-service enplanements:** calendar years 2024–2025; fetched October 22, 2026; supports the ranked-airport framework.",
+   "failed": [],
+   "passed": true,
+   "seconds": 9.7,
+   "input_tokens": 3969,
+   "output_tokens": 341,
+   "llm_calls": 2,
+   "cost_usd": 0.01135
+  },
+  {
+   "id": "forecast",
+   "category": "scope",
+   "conv": "G",
+   "question": "How many passengers will Boston Logan have in 2030?",
+   "tools": [],
+   "tool_args": [],
+   "tool_ok": true,
+   "tool_errors": [],
+   "ungrounded": [],
+   "generic": {
+    "confidence_stated": "n/a",
+    "sources_cited": "n/a"
+   },
+   "rules": {
+    "forecast_refused": "pass"
+   },
+   "llm_ok": true,
+   "answer": "I can’t provide a passenger forecast for Boston Logan in 2030: forecasts beyond observed trends are outside this service’s scope, and I don’t have a supported projection.\n\nI can instead report Logan’s latest annual **passengers boarded**, its observed growth, and indicators of capacity pressure. Passengers boarded is not the same as total arriving and departing passenger traffic.\n\n### Assumptions and uncertainty\n“Passengers” could mean boardings or total airport traffic; those measures are not interchangeable. Historical growth alone does not establish a future passenger count.\n\n### Sources\nNo dataset was queried; no forecast is provided.",
+   "failed": [],
+   "passed": true,
+   "seconds": 4.0,
+   "input_tokens": 1664,
+   "output_tokens": 126,
+   "llm_calls": 1,
+   "cost_usd": 0.00459
+  },
+  {
+   "id": "advice",
+   "category": "scope",
+   "conv": "H",
+   "question": "Is SFO a good investment? Just say yes or no.",
+   "tools": [],
+   "tool_args": [],
+   "tool_ok": true,
+   "tool_errors": [],
+   "ungrounded": [],
+   "generic": {
+    "confidence_stated": "n/a",
+    "sources_cited": "n/a"
+   },
+   "rules": {
+    "no_investment_advice": "pass"
+   },
+   "llm_ok": true,
+   "answer": "I can’t give a yes-or-no investment recommendation. I can assess SFO’s historical expansion indicators, but not whether an investment would be profitable.",
+   "failed": [],
+   "passed": true,
+   "seconds": 5.6,
+   "input_tokens": 1665,
+   "output_tokens": 92,
+   "llm_calls": 1,
+   "cost_usd": 0.00425
+  },
+  {
+   "id": "realtime",
+   "category": "scope",
+   "conv": "I",
+   "question": "Is JFK delayed right now?",
+   "tools": [],
+   "tool_args": [],
+   "tool_ok": true,
+   "tool_errors": [],
+   "ungrounded": [],
+   "generic": {
+    "confidence_stated": "n/a",
+    "sources_cited": "n/a"
+   },
+   "rules": {
+    "realtime_refused": "pass"
+   },
+   "llm_ok": true,
+   "answer": "I can’t tell whether JFK is delayed right now: I don’t have access to live flight operations. I can analyze JFK’s historical departure delays and congestion, but those wouldn’t establish current conditions.\n\nFor current delays, check your airline’s flight status or the FAA’s airport-status service.\n\n**Assumptions and uncertainty:** “JFK” means John F. Kennedy International Airport. No live status was checked.\n\n**Sources:** No data retrieved.",
+   "failed": [],
+   "passed": true,
+   "seconds": 3.7,
+   "input_tokens": 1658,
+   "output_tokens": 94,
+   "llm_calls": 1,
+   "cost_usd": 0.00426
+  },
+  {
+   "id": "hvn",
+   "category": "missing_data",
+   "conv": "J",
+   "question": "Is Tweed New Haven (HVN) a good expansion candidate?",
+   "tools": [
+    "airport_scores",
+    "unmet_demand"
+   ],
+   "tool_args": [
+    {
+     "airports": [
+      "HVN"
+     ]
+    },
+    {
+     "airport": "HVN"
+    }
+   ],
+   "tool_ok": false,
+   "tool_errors": [
+    "HVN is outside the ranked set (no departures by BTS reporting carriers in the On-Time data, so congestion is unknown), so its signals cannot be compared with peers."
+   ],
+   "ungrounded": [],
+   "generic": {
+    "confidence_stated": "pass",
+    "sources_cited": "pass"
+   },
+   "rules": {
+    "hvn_not_ranked": "pass"
+   },
+   "llm_ok": true,
+   "answer": "**HVN’s passenger growth makes it worth investigating, but the available data cannot establish it as a strong expansion candidate.** It is not ranked because congestion—the key evidence of capacity pressure—is unknown.\n\n- **Passenger demand:** FAA data show **737,789 passengers boarded in CY2025**, up **25.2%** from CY2024. That supports a case for further capacity analysis, but growth alone does not show that demand exceeds capacity.\n- **Congestion:** No departures by BTS reporting carriers appear in the On-Time data for HVN. That means congestion is **missing, not zero**.\n- **Expansion score:** No score, pillar points or rank is available. The unmet-demand assessment also could not compare HVN with peers because of the same coverage gap.\n\n### Assumptions and uncertainty\nThe tool reports **medium confidence**. BTS coverage is limited to reporting carriers’ domestic flights; some regional flights and all cargo flights are missing. Even where available, delays and taxi times are only congestion proxies—not direct measurements of gate, slot or seat capacity. The expansion methodology’s weights are judgment-based.\n\nThe appropriate next step is to investigate HVN’s actual terminal and gate utilization before drawing an expansion conclusion. These results do not establish financial viability or investment returns.\n\n### Sources\n- **FAA commercial-service enplanements:** CY2024–CY2025; fetched **2026-10-22**.\n- **BTS On-Time Reporting:** September 2025–August 2026; fetched **2026-10-22**.",
+   "failed": [
+    "tool_choice"
+   ],
+   "passed": false,
+   "seconds": 21.4,
+   "input_tokens": 6060,
+   "output_tokens": 387,
+   "llm_calls": 3,
+   "cost_usd": 0.01599
+  },
+  {
+   "id": "ome",
+   "category": "missing_data",
+   "conv": "K",
+   "question": "What share of departures from Nome (OME) is long haul?",
+   "tools": [
+    "long_haul_share"
+   ],
+   "tool_args": [
+    {
+     "airport": "OME"
+    }
+   ],
+   "tool_ok": true,
+   "tool_errors": [],
+   "ungrounded": [],
+   "generic": {
+    "confidence_stated": "pass",
+    "sources_cited": "pass"
+   },
+   "rules": {
+    "low_volume_flagged": "pass"
+   },
+   "llm_ok": true,
+   "answer": "**Nome (OME) had a long-haul departure share of 0.0%** in the covered domestic-flight data for September 2025–August 2026.\n\n- **Long-haul departures:** 0 of 359 reported operated departures.\n- **Distance distribution:** All 359 departures were in the 500–749-mile band.\n\n### Assumptions and uncertainty\nLong haul means **2,500 miles or more**; there is no official US definition. Confidence is **medium**: the small sample of 359 departures makes the figures unstable. Coverage includes only BTS-reporting carriers’ domestic flights; international departures, some regional flights, and all cargo flights are excluded.\n\n### Sources\nBTS On-Time Reporting — September 2025–August 2026; fetched October 22, 2026.",
+   "failed": [],
+   "passed": true,
+   "seconds": 7.8,
+   "input_tokens": 3635,
+   "output_tokens": 192,
+   "llm_calls": 2,
+   "cost_usd": 0.00919
+  },
+  {
+   "id": "old_period",
+   "category": "missing_data",
+   "conv": "L",
+   "question": "How congested was LAX in January 2024?",
+   "tools": [
+    "compare_congestion",
+    "airport_scores"
+   ],
+   "tool_args": [
+    {
+     "airports": [
+      "LAX"
+     ]
+    },
+    {
+     "airports": [
+      "LAX"
+     ]
+    }
+   ],
+   "tool_ok": true,
+   "tool_errors": [
+    "Give between 2 and 6 airports; got 1: LAX."
+   ],
+   "ungrounded": [],
+   "generic": {
+    "confidence_stated": "pass",
+    "sources_cited": "pass"
+   },
+   "rules": {
+    "outside_window": "pass"
+   },
+   "llm_ok": true,
+   "answer": "I can’t determine LAX’s congestion in **January 2024** with the available tools: they do not support selecting that month. The returned congestion data cover **September 2025–August 2026**, so they should not be used as evidence for January 2024.\n\nFor that later period, LAX recorded:\n- **20.6% of operated departures delayed at least 15 minutes**.\n- **7.3 minutes of excess taxi-out time**—the monthly average above the airport’s own relatively fast taxi-out benchmark.\n\n### Assumptions and uncertainty\nConfidence in the returned indicators is **medium**, but they do not establish conditions in the requested month. Coverage is reporting carriers’ domestic flights only; some regional flights and all cargo flights are missing. Delays and taxi times are congestion proxies, not direct measurements of gate or runway capacity; winter taxi times can also include de-icing.\n\n### Sources\nBTS On-Time Reporting, **September 2025–August 2026**, fetched **October 22, 2026**. No January 2024 data were returned.",
+   "failed": [],
+   "passed": true,
+   "seconds": 11.1,
+   "input_tokens": 5695,
+   "output_tokens": 339,
+   "llm_calls": 3,
+   "cost_usd": 0.01478
+  },
+  {
+   "id": "xyz",
+   "category": "unknown_code",
+   "conv": "M",
+   "question": "What share of flights out of XYZ airport is long haul?",
+   "tools": [
+    "long_haul_share"
+   ],
+   "tool_args": [
+    {
+     "airport": "XYZ"
+    }
+   ],
+   "tool_ok": true,
+   "tool_errors": [
+    "XYZ is not a US commercial-service airport in our data. The agent covers US airports only."
+   ],
+   "ungrounded": [],
+   "generic": {
+    "confidence_stated": "n/a",
+    "sources_cited": "n/a"
+   },
+   "rules": {
+    "unknown_code": "pass"
+   },
+   "llm_ok": true,
+   "answer": "I can’t report a long-haul share for **XYZ** because it isn’t a US commercial-service airport in the tool’s data. Which US airport did you mean? Please provide its name or IATA code.\n\n**Assumptions and uncertainty:** The airport could not be identified; missing data does not mean no long-haul flights.\n\n**Sources:** The tool returned an airport-lookup error, with no dataset period or fetch date.",
+   "failed": [],
+   "passed": true,
+   "seconds": 6.3,
+   "input_tokens": 3387,
+   "output_tokens": 113,
+   "llm_calls": 2,
+   "cost_usd": 0.0079
+  }
+ ],
+ "sensitivity": {
+  "universe_size": 140,
+  "top_n": 20,
+  "variants": {
+   "baseline": {
+    "spearman": 0.9999999999999998,
+    "top_n_overlap": 20,
+    "median_rank_shift_top_n": 0.0,
+    "max_rank_shift_top_n": 0
+   },
+   "equal_weights": {
+    "spearman": 0.9930985622191836,
+    "top_n_overlap": 18,
+    "median_rank_shift_top_n": 2.0,
+    "max_rank_shift_top_n": 5
+   },
+   "minmax_normalization": {
+    "spearman": 0.9295157749351973,
+    "top_n_overlap": 14,
+    "median_rank_shift_top_n": 6.5,
+    "max_rank_shift_top_n": 32
+   },
+   "geometric_aggregation": {
+    "spearman": 0.8843405319912785,
+    "top_n_overlap": 15,
+    "median_rank_shift_top_n": 4.5,
+    "max_rank_shift_top_n": 80
+   }
+  },
+  "weight_sweep": {
+   "factors": [
+    0.8,
+    1.0,
+    1.2
+   ],
+   "combinations": 24,
+   "min_spearman": 0.95327829331399,
+   "median_of_median_rank_shift_top_n": 1.0,
+   "worst_rank_shift_top_n": 24,
+   "top_n_always_in": 13
+  },
+  "focus_ranks": {
+   "BOS": {
+    "baseline": 7,
+    "equal_weights": 9,
+    "minmax_normalization": 14,
+    "geometric_aggregation": 10
+   },
+   "BTV": {
+    "baseline": 30,
+    "equal_weights": 39,
+    "minmax_normalization": 31,
+    "geometric_aggregation": 54
+   },
+   "PVD": {
+    "baseline": 36,
+    "equal_weights": 31,
+    "minmax_normalization": 56,
+    "geometric_aggregation": 29
+   },
+   "PWM": {
+    "baseline": 68,
+    "equal_weights": 68,
+    "minmax_normalization": 68,
+    "geometric_aggregation": 49
+   },
+   "BDL": {
+    "baseline": 86,
+    "equal_weights": 84,
+    "minmax_normalization": 100,
+    "geometric_aggregation": 64
+   },
+   "MHT": {
+    "baseline": 109,
+    "equal_weights": 103,
+    "minmax_normalization": 75,
+    "geometric_aggregation": 115
+   },
+   "SFO": {
+    "baseline": 2,
+    "equal_weights": 2,
+    "minmax_normalization": 7,
+    "geometric_aggregation": 2
+   },
+   "ORD": {
+    "baseline": 1,
+    "equal_weights": 1,
+    "minmax_normalization": 1,
+    "geometric_aggregation": 1
+   }
+  },
+  "rank_range_width_top_n": {
+   "median": 10.0,
+   "max": 36
+  },
+  "known_constrained": {
+   "threshold": 63.66071428571429,
+   "in_top_quartile": [
+    "JFK",
+    "LGA",
+    "EWR",
+    "ORD",
+    "PHL",
+    "SFO"
+   ],
+   "not_in_top_quartile": [
+    "ATL"
+   ],
+   "missing": []
+  }
+ }
+}

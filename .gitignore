@@ -1,0 +1,10 @@
+.env
+.venv/
+__pycache__/
+.pytest_cache/
+# Raw downloads and scratch stay local; the built database (about 3 MB) is committed so the agent runs without them.
+data/*
+!data/processed/
+data/processed/*
+!data/processed/airports.duckdb
+.DS_Store

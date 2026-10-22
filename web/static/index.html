@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light dark">
+  <title>Airport Investment Agent</title>
+  <link rel="stylesheet" href="/static/style.css?v=5">
+</head>
+<body>
+  <header class="topbar">
+    <div class="topbar-inner">
+      <div class="brand">
+        <span class="logo" aria-hidden="true">
+          <svg viewBox="0 0 24 24" width="20" height="20"><path fill="currentColor" d="M21 16v-2l-8-5V3.5a1.5 1.5 0 0 0-3 0V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5z"/></svg>
+        </span>
+        <div>
+          <h1>Airport Investment Agent</h1>
+          <p class="tagline">US airport expansion candidates, scored by code from public data. The model only explains.</p>
+        </div>
+      </div>
+      <button id="new-chat" type="button" class="ghost">
+        <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" d="M12 5v14M5 12h14"/></svg>
+        <span>New conversation</span>
+      </button>
+    </div>
+  </header>
+
+  <main id="log" role="log" aria-live="polite" aria-label="Conversation">
+    <div class="log-inner" id="log-inner">
+      <section id="welcome">
+        <h2>Where would airport expansion pay off?</h2>
+        <p class="lead">Ask about US commercial-service airports: rankings, comparisons, single metrics, and follow-ups.
+          Open <em>Show work</em> under an answer to see the tools, confidence, warnings and sources.</p>
+        <ul class="pillars">
+          <li><strong>Computed, not generated</strong><span>Every score and percentage comes from a deterministic tool.</span></li>
+          <li><strong>Sourced</strong><span>BTS On-Time, FAA enplanements and DOT airfare, each with its period.</span></li>
+          <li><strong>Honest about gaps</strong><span>Confidence is set by fixed rules; missing data is reported.</span></li>
+        </ul>
+        <p class="section-label">Try one of these</p>
+        <div class="chips" id="examples">
+          <button type="button" class="chip" data-kind="Ranking">Which airports in New England are strong candidates for terminal expansion?</button>
+          <button type="button" class="chip" data-kind="Comparison">Compare LA and Santa Ana airport congestion levels.</button>
+          <button type="button" class="chip" data-kind="Single metric">What is the percentage of long haul flights out of Anchorage airport?</button>
+          <button type="button" class="chip" data-kind="Unmet demand">What is the unmet flight demand in SFO airport and why?</button>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <footer class="dock">
+    <form id="composer" autocomplete="off">
+      <label for="question" class="sr-only">Your question</label>
+      <textarea id="question" rows="1" maxlength="1000" placeholder="Ask about an airport…" dir="auto"></textarea>
+      <div class="composer-actions">
+        <select id="voice-lang" aria-label="Voice language" hidden>
+          <option value="en-US">EN</option>
+          <option value="he-IL">עב</option>
+        </select>
+        <button id="mic" type="button" class="icon-btn" aria-label="Dictate your question" aria-pressed="false" hidden>
+          <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3"/></g></svg>
+        </button>
+        <button id="send" type="submit" class="send-btn" aria-label="Send">
+          <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" d="M12 19V5M5 12l7-7 7 7"/></svg>
+        </button>
+      </div>
+    </form>
+    <p id="voice-note" class="note" hidden>Voice input uses your browser's speech recognition; in Chrome the audio is processed by Google. Check the text before sending.</p>
+    <p class="note hint">Enter to send · Shift+Enter for a new line · Not investment advice</p>
+  </footer>
+
+  <script src="/static/app.js?v=5"></script>
+</body>
+</html>
